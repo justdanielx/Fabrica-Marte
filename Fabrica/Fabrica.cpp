@@ -42,3 +42,16 @@ Fabrica::Fabrica(int linhas, int colunas) : linhasUsadas(linhas), colunasUsadas(
     colocar('$', Settings::fabrica_num_depositos_silicio);
     colocar('~', Settings::fabrica_num_depositos_gelo);
 }
+
+int Fabrica::obterLinhas() const {return linhasUsadas;}
+int Fabrica::obterColunas() const {return colunasUsadas;}
+int Fabrica::obterCreditos() const {return creditos;}
+int Fabrica::obterInstante() const {return instante;}
+
+const Posicao& Fabrica::obterPosicao(int linha, int coluna) const {
+    if ( (linha < 0 || linha >= linhasUsadas) ||
+         (coluna < 0 || coluna >= colunasUsadas))
+            throw std::out_of_range("Posicao fora da fabrica!");
+
+    return grelha[linha][coluna];
+}

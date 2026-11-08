@@ -7,6 +7,12 @@ class Fabrica {
     public:
         Fabrica(int linhas, int colunas);
 
+        int obterLinhas() const;
+        int obterColunas() const;
+        int obterCreditos() const;
+        int obterInstante() const;
+        const Posicao& obterPosicao(int linha, int coluna) const;
+
     private:
         int linhasUsadas;
         int colunasUsadas;
