@@ -4,7 +4,7 @@
 
 class Posicao {
     public:
-        Posicao(char tipo, int qtd);
+        Posicao(char tipo = ' ', int qtd = 0);
 
         char obterSimbolo() const;
         int obterQuantidade() const;
