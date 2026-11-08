@@ -1,6 +1,7 @@
 #include <string>
 #include <stdexcept>
 #include <random>
+#include <fstream>
 
 #include "Fabrica.h"
 
@@ -41,6 +42,40 @@ Fabrica::Fabrica(int linhas, int colunas) : linhasUsadas(linhas), colunasUsadas(
     colocar('%', Settings::fabrica_num_depositos_ferro);
     colocar('$', Settings::fabrica_num_depositos_silicio);
     colocar('~', Settings::fabrica_num_depositos_gelo);
+}
+
+Fabrica::Fabrica(const std::string& nomeFicheiro) : linhasUsadas(0), colunasUsadas(0), creditos(Settings::fabrica_creditos_iniciais), instante(0) {
+    std::ifstream ficheiro(nomeFicheiro);
+    std::string linha;
+
+    if (!ficheiro)
+        throw std::invalid_argument("Ficheiro nao encontrado!");
+
+    if (!(ficheiro >> linhasUsadas >> colunasUsadas))
+        throw std::invalid_argument("Formato do mapa invalido!");
+
+    if ( (linhasUsadas <= 0 || linhasUsadas > Settings::fabrica_max_linhas) ||
+         (colunasUsadas <= 0 || colunasUsadas > Settings::fabrica_max_colunas))
+            throw std::invalid_argument("Numero de linhas ou colunas invalidas!");
+
+    std::getline(ficheiro, linha);
+
+    for (int i = 0; i < linhasUsadas; i++) {
+        if (!std::getline(ficheiro, linha))
+            throw std::invalid_argument("O mapa tem linhas a menos!");
+
+        if (!linha.empty() && linha.back() == '\r') linha.pop_back();
+
+        if (linha.size() != static_cast<size_t>(colunasUsadas))
+            throw std::invalid_argument("Linha do mapa com tamanho errado!");
+
+        for (int j = 0; j < colunasUsadas; j++) {
+            char simbolo = linha[j];
+
+            if (simbolo == '.') simbolo = ' ';
+            grelha[i][j] = Posicao(simbolo, sortear(Settings::deposito_quantidade_min, Settings::deposito_quantidade_max));
+        }
+    }
 }
 
 int Fabrica::obterLinhas() const {return linhasUsadas;}

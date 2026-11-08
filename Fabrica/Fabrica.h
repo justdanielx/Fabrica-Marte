@@ -1,11 +1,14 @@
 #pragma once
 
+#include <string>
+
 #include "Settings.h"
 #include "Posicao.h"
 
 class Fabrica {
     public:
         Fabrica(int linhas, int colunas);
+        Fabrica(const std::string& nomeFicheiro);
 
         int obterLinhas() const;
         int obterColunas() const;
