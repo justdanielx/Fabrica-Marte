@@ -34,7 +34,13 @@ int Posicao::obterQuantidade() const {return qtdMateriaPrima;}
 std::string Posicao::obterDescricao() const {
     std::ostringstream oss;
 
-    oss << tipoTerreno << " - " << qtdMateriaPrima;
+    if (tipoTerreno == ' ') oss << "Solo";
+    else if (tipoTerreno == '#') oss << "Cratera";
+    else if (tipoTerreno == '%') oss << "Deposito de ferro";
+    else if (tipoTerreno == '$') oss << "Deposito de silicio";
+    else if (tipoTerreno == '~') oss << "Deposito de gelo";
+
+    if (eDeposito()) oss << " com " << qtdMateriaPrima << " unidades";
 
     return oss.str();
 }
