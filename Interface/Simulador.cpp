@@ -40,6 +40,8 @@ std::string Simulador::descreverPosicao(const std::string& posicao) const {
     int linha = posicao[0] - 'a';
     int coluna = posicao[1] - 'a';
 
+    //nao funciona com AB por exemplo apenas com aa, indica o erro de out of range abaixo (problema a melhorar)
+
     try {
         return posicao + ": " + fabrica.obterPosicao(linha, coluna).obterDescricao();
     } catch (const std::out_of_range& e) {

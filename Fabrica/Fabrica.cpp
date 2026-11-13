@@ -25,6 +25,7 @@ void Fabrica::colocar(char tipo, int qtd) {
                 grelha[linha][coluna] = Posicao(tipo, sortear(Settings::deposito_quantidade_min, Settings::deposito_quantidade_max));
             if (tipo == '#')
                 grelha[linha][coluna] = Posicao(tipo, 0);
+                //desnecessario o construtor faz a verificacao
             i++;
         }
     }
@@ -64,9 +65,9 @@ Fabrica::Fabrica(const std::string& nomeFicheiro) : linhasUsadas(0), colunasUsad
         if (!std::getline(ficheiro, linha))
             throw std::invalid_argument("O mapa tem linhas a menos!");
 
-        if (!linha.empty() && linha.back() == '\r') linha.pop_back();
+        if (!linha.empty() && linha.back() == '\r') linha.pop_back(); //apaga o \r para Linux ou macOs (recomendacao do Claude)
 
-        if (linha.size() != static_cast<size_t>(colunasUsadas))
+        if (linha.size() != static_cast<size_t>(colunasUsadas)) //static_cast<size_t> transforma o data type de colunasUsadas em size_t, size() devcolve size_t (dataType int enorme e sem sinal)
             throw std::invalid_argument("Linha do mapa com tamanho errado!");
 
         for (int j = 0; j < colunasUsadas; j++) {
@@ -74,6 +75,7 @@ Fabrica::Fabrica(const std::string& nomeFicheiro) : linhasUsadas(0), colunasUsad
 
             if (simbolo == '.') simbolo = ' ';
             grelha[i][j] = Posicao(simbolo, sortear(Settings::deposito_quantidade_min, Settings::deposito_quantidade_max));
+            //nao e necessario verificar se é cratera o construtor faz isso
         }
     }
 }

@@ -18,7 +18,7 @@ int main() {
         iss >> comando;
 
         if (comando == "fim") return 0;
-
+ 
         try {
             if (comando == "fabrica") {
                 int linhas = 0, colunas = 0;

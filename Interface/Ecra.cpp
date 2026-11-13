@@ -39,7 +39,7 @@ bool Ecra::escrever(const std::string& texto) {
             buffer[linhaCursor][colunaCursor] = texto[i];
             colunaCursor++;
         } else {
-            return false;   /*Decidi nao complicar, mas assim existe maneira de saber 
+            return false;   /*Decidi nao complicar, mas assim nao existe maneira de saber
                             se o false significa que nao foi possivel escrever de todo 
                             ou se escreveu mas ficou pela metade ou se na versoa de 
                             indicar uma posicao especifica se nao foi uma posicao valida*/
