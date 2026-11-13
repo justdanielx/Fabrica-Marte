@@ -1,15 +1,15 @@
 #pragma once
 
 #include "Itens/Item.h"
-
-class ProdutoRefinado;
+#include "Itens/ProdutoRefinado.h"
 
 class MateriaPrima : public Item {
     public:
         MateriaPrima(const std::string& nome, char simbolo, int valor);
 
-        bool eMateriaPrima() const override;
-        Item* duplicar() const override;
+        static MateriaPrima* doDeposito(char deposito);
 
-        ProdutoRefinado* transformar() const;
+        bool eMateriaPrima() const override;
+        ProdutoRefinado* transformar() const override;
+        Item* duplicar() const override;
 };
