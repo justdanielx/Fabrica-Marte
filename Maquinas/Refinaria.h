@@ -6,10 +6,11 @@ class Refinaria : public Maquina {
     public:
         Refinaria(char direcao);
         Refinaria(const Refinaria& outra);
+        Refinaria& operator=(const Refinaria& outra) = delete;
         ~Refinaria() override;
 
         void atuar(Fabrica& fabrica, int linha, int coluna) override;
-        bool aceitarItem(Item* item) override;
+        bool aceitarItem(Item* novo) override;
         char obterSimbolo() const override;
         std::string obterTipo() const override;
         std::string obterResumo() const override;

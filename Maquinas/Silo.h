@@ -5,13 +5,12 @@
 class Silo : public Maquina {
     public:
         Silo(char direcao);
-        Silo(const Silo& outra);
+        Silo(const Silo& outro);
+        Silo& operator=(const Silo& outro);
         ~Silo() override;
 
         void atuar(Fabrica& fabrica, int linha, int coluna) override;
-        bool aceitarItem(Item* item) override;
-        bool melhorar() override;
-        int obterCustoMelhoria() const override;
+        bool aceitarItem(Item* novo) override;
         char obterSimbolo() const override;
         std::string obterTipo() const override;
         std::string obterResumo() const override;
@@ -22,4 +21,9 @@ class Silo : public Maquina {
         Item** itens;
         int quantidade;
         int probPerda;
+
+        void acrescentar(Item* novo);
+        Item* retirarMaisAntigo();
+        void copiar(const Silo& outro);
+        void libertar();
 };

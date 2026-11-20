@@ -6,12 +6,11 @@ class Perfuradora : public Maquina {
     public:
         Perfuradora(char direcao);
         Perfuradora(const Perfuradora& outra);
+        Perfuradora& operator=(const Perfuradora& outra) = delete;
         ~Perfuradora() override;
 
         void atuar(Fabrica& fabrica, int linha, int coluna) override;
-        bool aceitarItem(Item* item) override;
-        bool melhorar() override;
-        int obterCustoMelhoria() const override;
+        bool aceitarItem(Item* novo) override;
         char obterSimbolo() const override;
         std::string obterTipo() const override;
         std::string obterResumo() const override;

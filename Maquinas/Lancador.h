@@ -6,12 +6,11 @@ class Lancador : public Maquina {
     public:
         Lancador(char direcao);
         Lancador(const Lancador& outra);
+        Lancador& operator=(const Lancador& outra) = delete;
         ~Lancador() override;
 
         void atuar(Fabrica& fabrica, int linha, int coluna) override;
-        bool aceitarItem(Item* item) override;
-        bool melhorar() override;
-        int obterCustoMelhoria() const override;
+        bool aceitarItem(Item* novo) override;
         char obterSimbolo() const override;
         std::string obterTipo() const override;
         std::string obterResumo() const override;

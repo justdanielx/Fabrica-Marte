@@ -9,11 +9,12 @@ class Maquina {
     public:
         Maquina(int custo, char direcao);
         Maquina(const Maquina& outra);
-        Maquina& operator=(const Maquina& outra) = delete;
         virtual ~Maquina();
 
+        static bool direcaoValida(char direcao);
+
         virtual void atuar(Fabrica& fabrica, int linha, int coluna) = 0;
-        virtual bool aceitarItem(Item* item) = 0;
+        virtual bool aceitarItem(Item* novo) = 0;
         virtual bool melhorar();
         virtual int obterCustoMelhoria() const;
         virtual char obterSimbolo() const = 0;
@@ -31,7 +32,10 @@ class Maquina {
         void removerEngenheiro();
 
     protected:
+        Maquina& operator=(const Maquina& outra);
+
         int duracaoComEngenheiros(int duracaoBase) const;
+        std::string descricaoBase() const;
 
     private:
         int custo;

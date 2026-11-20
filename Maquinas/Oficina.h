@@ -6,12 +6,11 @@ class Oficina : public Maquina {
     public:
         Oficina(char direcao);
         Oficina(const Oficina& outra);
+        Oficina& operator=(const Oficina& outra) = delete;
         ~Oficina() override;
 
         void atuar(Fabrica& fabrica, int linha, int coluna) override;
-        bool aceitarItem(Item* item) override;
-        bool melhorar() override;
-        int obterCustoMelhoria() const override;
+        bool aceitarItem(Item* novo) override;
         char obterSimbolo() const override;
         std::string obterTipo() const override;
         std::string obterResumo() const override;
@@ -23,6 +22,5 @@ class Oficina : public Maquina {
         int silicioPuro;
         int agua;
         int instantesRestantes;
-        int melhorias;
         Item* kitPorEntregar;
 };
