@@ -4,6 +4,8 @@
 #include <fstream>
 
 #include "Fabrica.h"
+#include "Maquinas/Maquina.h"
+#include "Itens/Item.h"
 
 int Fabrica::sortear(int min, int max) {
     static std::mt19937 gerador(std::random_device{}());
@@ -85,10 +87,89 @@ int Fabrica::obterColunas() const {return colunasUsadas;}
 int Fabrica::obterCreditos() const {return creditos;}
 int Fabrica::obterInstante() const {return instante;}
 
+bool Fabrica::dentro(int linha, int coluna) const {
+    return (linha >= 0 && linha < linhasUsadas && coluna >= 0 && coluna < colunasUsadas);
+}
+
 const Posicao& Fabrica::obterPosicao(int linha, int coluna) const {
-    if ( (linha < 0 || linha >= linhasUsadas) ||
-         (coluna < 0 || coluna >= colunasUsadas))
-            throw std::out_of_range("Posicao fora da fabrica!");
+    if (!dentro(linha, coluna))
+        throw std::out_of_range("Posicao fora da fabrica!");
 
     return grelha[linha][coluna];
+}
+
+Posicao& Fabrica::posicaoEm(int linha, int coluna) {
+    if (!dentro(linha, coluna))
+        throw std::out_of_range("Posicao fora da fabrica!");
+
+    return grelha[linha][coluna];
+}
+
+int Fabrica::obterNumeroMaquinas() const {
+    int total = 0;
+
+    for (int i = 0; i < linhasUsadas; i++)
+        for (int j = 0; j < colunasUsadas; j++)
+            if (grelha[i][j].temMaquina()) total++;
+
+    return total;
+}
+
+const std::vector<std::string>& Fabrica::obterResumo() const {return resumo;}
+const std::map<std::string, int>& Fabrica::obterEnviados() const {return enviados;}
+
+void Fabrica::avancarInstante() {
+    instante++;
+    resumo.clear();
+
+    for (int i = 0; i < linhasUsadas; i++)
+        for (int j = 0; j < colunasUsadas; j++)
+            if (grelha[i][j].temMaquina())
+                grelha[i][j].obterMaquina()->atuar(*this, i, j);
+}
+
+bool Fabrica::entregar(int linha, int coluna, char direcao, Item* item) {
+    int linhaVizinha = linha, colunaVizinha = coluna;
+
+    if (direcao == 'c') linhaVizinha--;
+    else if (direcao == 'b') linhaVizinha++;
+    else if (direcao == 'e') colunaVizinha--;
+    else if (direcao == 'd') colunaVizinha++;
+
+    if (!dentro(linhaVizinha, colunaVizinha)) return false;
+
+    Posicao& vizinha = grelha[linhaVizinha][colunaVizinha];
+    if (!vizinha.temMaquina()) return false;
+
+    int chegadaAnterior = item->obterInstanteChegada();
+    item->marcarChegada(instante);
+
+    if (vizinha.obterMaquina()->aceitarItem(item)) return true;
+
+    item->marcarChegada(chegadaAnterior);
+    return false;
+}
+
+char Fabrica::extrairMateriaPrima(int linha, int coluna) {
+    Posicao& posicao = posicaoEm(linha, coluna);
+    char deposito = posicao.extrair();
+
+    if (deposito != ' ' && !posicao.eDeposito())
+        registar("deposito esgotado em " + nomePosicao(linha, coluna));
+
+    return deposito;
+}
+
+void Fabrica::registar(const std::string& evento) {resumo.push_back(evento);}
+
+bool Fabrica::sortearProbabilidade(int percentagem) {
+    return (sortear(1, 100) <= percentagem);
+}
+
+std::string Fabrica::nomePosicao(int linha, int coluna) {
+    std::string nome;
+
+    nome += static_cast<char>('a' + linha);
+    nome += static_cast<char>('a' + coluna);
+    return nome;
 }
