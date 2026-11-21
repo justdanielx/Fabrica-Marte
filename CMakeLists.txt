@@ -25,6 +25,7 @@ add_executable(Fabrica-Marte
         Comandos/ComandoCarrega.cpp
         Comandos/ComandoFabrica.cpp
         Comandos/ComandoFim.cpp
+        Comandos/ComandoLposicao.cpp
 )
 
 target_include_directories(Fabrica-Marte PRIVATE ${CMAKE_SOURCE_DIR})

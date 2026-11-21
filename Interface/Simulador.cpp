@@ -8,10 +8,12 @@
 #include "Comandos/ComandoFabrica.h"
 #include "Comandos/ComandoCarrega.h"
 #include "Comandos/ComandoFim.h"
+#include "Comandos/ComandoLposicao.h"
 
 Simulador::Simulador() : fabrica(nullptr), aTerminar(false) {
     comandos.push_back(new ComandoFabrica());
     comandos.push_back(new ComandoCarrega());
+    comandos.push_back(new ComandoLposicao());
     comandos.push_back(new ComandoFim());
 }
 
