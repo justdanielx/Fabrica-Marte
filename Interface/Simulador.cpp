@@ -2,20 +2,23 @@
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
+#include <fstream>
 
 #include "Interface/Simulador.h"
 #include "Interface/Ecra.h"
 #include "Comandos/ComandoFabrica.h"
 #include "Comandos/ComandoCarrega.h"
 #include "Comandos/ComandoFim.h"
+#include "Comandos/ComandoExecuta.h"
 #include "Comandos/ComandoAjuda.h"
 #include "Comandos/ComandoLposicao.h"
 
-Simulador::Simulador() : fabrica(nullptr), aTerminar(false) {
+Simulador::Simulador() : fabrica(nullptr), aTerminar(false), ficheirosAbertos(0) {
     comandos.push_back(new ComandoFabrica());
     comandos.push_back(new ComandoCarrega());
     comandos.push_back(new ComandoLposicao());
     comandos.push_back(new ComandoAjuda());
+    comandos.push_back(new ComandoExecuta());
     comandos.push_back(new ComandoFim());
 }
 
@@ -62,6 +65,26 @@ void Simulador::processar(const std::string& linha) {
     } catch (const std::exception& e) {
         std::cout << e.what() << std::endl;
     }
+}
+
+void Simulador::executarFicheiro(const std::string& nomeFicheiro) {
+    const int MAX_FICHEIROS = 10;
+
+    if (ficheirosAbertos >= MAX_FICHEIROS) throw std::runtime_error("Demasiados ficheiros executados uns dentro dos outros!");
+
+    std::ifstream ficheiro(nomeFicheiro);
+    std::string linha;
+
+    if (!ficheiro) throw std::invalid_argument("Ficheiro " + nomeFicheiro + " nao encontrado!");
+
+    ficheirosAbertos++;
+    while (!aTerminar && std::getline(ficheiro, linha)) {
+        if (!linha.empty() && linha.back() == '\r') linha.pop_back();
+
+        std::cout << "> " << linha << std::endl;
+        processar(linha);
+    }
+    ficheirosAbertos--;
 }
 
 void Simulador::terminar() {aTerminar = true;}

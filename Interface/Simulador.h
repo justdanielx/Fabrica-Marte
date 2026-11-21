@@ -16,6 +16,7 @@ class Simulador {
 
         void executar();
         void processar(const std::string& linha);
+        void executarFicheiro(const std::string& nomeFicheiro);
         void terminar();
 
         bool temFabrica() const;
@@ -33,4 +34,5 @@ class Simulador {
         Fabrica* fabrica;
         std::vector<Comando*> comandos;
         bool aTerminar;
+        int ficheirosAbertos;
 };
