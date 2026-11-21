@@ -9,14 +9,13 @@ ComandoDespede::ComandoDespede() : Comando("despede", "despede <id>",
     "Falha se o engenheiro nao existir.",
     "despede 2") {}
 
-bool ComandoDespede::executa(Simulador& simulador, std::istringstream& parametros) const {
+bool ComandoDespede::executa(Simulador&, std::istringstream& parametros) const {
     int id = 0;
 
     if (!lerInteiro(parametros, id) || !semMaisParametros(parametros))
         throw std::invalid_argument(erroSintaxe());
 
     if (id <= 0) throw std::invalid_argument("O numero do engenheiro tem de ser positivo!");
-    simulador.obterFabrica();
 
     throw std::logic_error("Comando valido, mas so fica disponivel na entrega final!");
 }

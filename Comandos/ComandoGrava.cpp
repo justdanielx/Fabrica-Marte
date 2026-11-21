@@ -9,13 +9,11 @@ ComandoGrava::ComandoGrava() : Comando("grava", "grava <nome>",
     "e substituida. As associacoes dos engenheiros nao ficam na copia.",
     "grava antes") {}
 
-bool ComandoGrava::executa(Simulador& simulador, std::istringstream& parametros) const {
+bool ComandoGrava::executa(Simulador&, std::istringstream& parametros) const {
     std::string nome;
 
     if (!lerPalavra(parametros, nome) || !semMaisParametros(parametros))
         throw std::invalid_argument(erroSintaxe());
-
-    simulador.obterFabrica();
 
     throw std::logic_error("Comando valido, mas so fica disponivel na entrega final!");
 }

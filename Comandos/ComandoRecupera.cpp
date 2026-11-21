@@ -9,13 +9,11 @@ ComandoRecupera::ComandoRecupera() : Comando("recupera", "recupera <nome>",
     "A copia nao e eliminada. Falha se nao existir copia com esse nome.",
     "recupera antes") {}
 
-bool ComandoRecupera::executa(Simulador& simulador, std::istringstream& parametros) const {
+bool ComandoRecupera::executa(Simulador&, std::istringstream& parametros) const {
     std::string nome;
 
     if (!lerPalavra(parametros, nome) || !semMaisParametros(parametros))
         throw std::invalid_argument(erroSintaxe());
-
-    simulador.obterFabrica();
 
     throw std::logic_error("Comando valido, mas so fica disponivel na entrega final!");
 }

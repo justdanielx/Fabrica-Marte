@@ -9,13 +9,11 @@ ComandoContrata::ComandoContrata() : Comando("contrata", "contrata <nome>",
     "Falha se nao houver creditos suficientes.",
     "contrata joaquim") {}
 
-bool ComandoContrata::executa(Simulador& simulador, std::istringstream& parametros) const {
+bool ComandoContrata::executa(Simulador&, std::istringstream& parametros) const {
     std::string nome;
 
     if (!lerPalavra(parametros, nome) || !semMaisParametros(parametros))
         throw std::invalid_argument(erroSintaxe());
-
-    simulador.obterFabrica();
 
     throw std::logic_error("Comando valido, mas so fica disponivel na entrega final!");
 }
