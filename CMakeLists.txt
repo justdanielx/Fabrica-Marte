@@ -22,6 +22,7 @@ add_executable(Fabrica-Marte
         Itens/MateriaPrima.cpp
         Itens/ProdutoRefinado.cpp
         Comandos/Comando.cpp
+        Comandos/ComandoAjuda.cpp
         Comandos/ComandoCarrega.cpp
         Comandos/ComandoFabrica.cpp
         Comandos/ComandoFim.cpp

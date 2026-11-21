@@ -8,12 +8,14 @@
 #include "Comandos/ComandoFabrica.h"
 #include "Comandos/ComandoCarrega.h"
 #include "Comandos/ComandoFim.h"
+#include "Comandos/ComandoAjuda.h"
 #include "Comandos/ComandoLposicao.h"
 
 Simulador::Simulador() : fabrica(nullptr), aTerminar(false) {
     comandos.push_back(new ComandoFabrica());
     comandos.push_back(new ComandoCarrega());
     comandos.push_back(new ComandoLposicao());
+    comandos.push_back(new ComandoAjuda());
     comandos.push_back(new ComandoFim());
 }
 
@@ -90,6 +92,15 @@ const Comando* Simulador::procurarComando(const std::string& nome) const {
         if (comando->obterNome() == nome) return comando;
 
     return nullptr;
+}
+
+std::string Simulador::obterListaComandos() const {
+    std::ostringstream oss;
+
+    for (const Comando* comando : comandos)
+        oss << comando->obterSintaxe() << std::endl;
+
+    return oss.str();
 }
 
 std::string Simulador::obterDesenho() const {

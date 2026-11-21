@@ -24,6 +24,7 @@ class Simulador {
         const Fabrica& obterFabrica() const;
 
         const Comando* procurarComando(const std::string& nome) const;
+        std::string obterListaComandos() const;
 
         std::string obterDesenho() const;
         void mostrar() const;
