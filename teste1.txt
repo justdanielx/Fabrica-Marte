@@ -1,0 +1,14 @@
+carrega mapa1.txt
+compra p ac d
+compra t ad d
+compra t ae d
+compra s af b
+compra t bf b
+compra l cf d
+avanca 8
+estado
+lposicao af 1
+vende ae
+roda ad b
+avanca 2
+estado
