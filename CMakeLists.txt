@@ -29,6 +29,7 @@ add_executable(Fabrica-Marte
         Comandos/ComandoFabrica.cpp
         Comandos/ComandoFim.cpp
         Comandos/ComandoLposicao.cpp
+        Comandos/ComandoRoda.cpp
         Comandos/ComandoVende.cpp
 )
 
