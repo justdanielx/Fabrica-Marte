@@ -29,6 +29,7 @@ add_executable(Fabrica-Marte
         Comandos/ComandoFabrica.cpp
         Comandos/ComandoFim.cpp
         Comandos/ComandoLposicao.cpp
+        Comandos/ComandoVende.cpp
 )
 
 target_include_directories(Fabrica-Marte PRIVATE ${CMAKE_SOURCE_DIR})
