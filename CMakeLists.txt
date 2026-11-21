@@ -8,13 +8,9 @@ add_executable(Fabrica-Marte
         main.cpp
         Interface/Ecra.cpp
         Interface/Simulador.cpp
+        Fabrica/Engenheiro.cpp
         Fabrica/Fabrica.cpp
         Fabrica/Posicao.cpp
-        Comandos/Comando.cpp
-        Fabrica/Engenheiro.cpp
-        Itens/Item.cpp
-        Itens/MateriaPrima.cpp
-        Itens/ProdutoRefinado.cpp
         Maquinas/Lancador.cpp
         Maquinas/Maquina.cpp
         Maquinas/Oficina.cpp
@@ -22,6 +18,13 @@ add_executable(Fabrica-Marte
         Maquinas/Refinaria.cpp
         Maquinas/Silo.cpp
         Maquinas/Transportador.cpp
+        Itens/Item.cpp
+        Itens/MateriaPrima.cpp
+        Itens/ProdutoRefinado.cpp
+        Comandos/Comando.cpp
+        Comandos/ComandoCarrega.cpp
+        Comandos/ComandoFabrica.cpp
+        Comandos/ComandoFim.cpp
 )
 
 target_include_directories(Fabrica-Marte PRIVATE ${CMAKE_SOURCE_DIR})

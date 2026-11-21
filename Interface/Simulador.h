@@ -1,19 +1,35 @@
 #pragma once
 
 #include <string>
+#include <vector>
 
-#include "Interface/Ecra.h"
 #include "Fabrica/Fabrica.h"
+
+class Comando;
 
 class Simulador {
     public:
-        Simulador(int linhas, int colunas);
-        Simulador(const std::string& nomeFicheiro);
+        Simulador();
+        Simulador(const Simulador&) = delete;
+        Simulador& operator=(const Simulador&) = delete;
+        ~Simulador();
 
-        std::string obterSimulador() const;
-        std::string descreverPosicao(const std::string& posicao) const;
         void executar();
+        void processar(const std::string& linha);
+        void terminar();
+
+        bool temFabrica() const;
+        void criarFabrica(Fabrica* nova);
+        Fabrica& obterFabrica();
+        const Fabrica& obterFabrica() const;
+
+        const Comando* procurarComando(const std::string& nome) const;
+
+        std::string obterDesenho() const;
+        void mostrar() const;
 
     private:
-        Fabrica fabrica;
-};  
+        Fabrica* fabrica;
+        std::vector<Comando*> comandos;
+        bool aTerminar;
+};
