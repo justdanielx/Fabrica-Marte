@@ -26,6 +26,7 @@ add_executable(Fabrica-Marte
         Comandos/ComandoAvanca.cpp
         Comandos/ComandoCarrega.cpp
         Comandos/ComandoCompra.cpp
+        Comandos/ComandoEstado.cpp
         Comandos/ComandoExecuta.cpp
         Comandos/ComandoFabrica.cpp
         Comandos/ComandoFim.cpp

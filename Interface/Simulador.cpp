@@ -9,6 +9,7 @@
 #include "Comandos/ComandoFabrica.h"
 #include "Comandos/ComandoCarrega.h"
 #include "Comandos/ComandoFim.h"
+#include "Comandos/ComandoEstado.h"
 #include "Comandos/ComandoAvanca.h"
 #include "Comandos/ComandoRoda.h"
 #include "Comandos/ComandoVende.h"
@@ -27,6 +28,7 @@ Simulador::Simulador() : fabrica(nullptr), aTerminar(false), ficheirosAbertos(0)
     comandos.push_back(new ComandoVende());
     comandos.push_back(new ComandoRoda());
     comandos.push_back(new ComandoAvanca());
+    comandos.push_back(new ComandoEstado());
     comandos.push_back(new ComandoFim());
 }
 
