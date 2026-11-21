@@ -79,7 +79,7 @@ void Silo::atuar(Fabrica& fabrica, int linha, int coluna) {
 
     if (Fabrica::sortearProbabilidade(probPerda)) {
         Item* perdido = retirarMaisAntigo();
-        fabrica.registar("silo em " + Fabrica::nomePosicao(linha, coluna) + " perdeu " + perdido->obterNome());
+        fabrica.registar("silo em " + Fabrica::nomePosicao(linha, coluna) + " perdeu " + perdido->obterSimbolo());
         delete perdido;
 
         if (quantidade == 0) return;

@@ -31,14 +31,14 @@ void Perfuradora::atuar(Fabrica& fabrica, int linha, int coluna) {
     MateriaPrima* extraida = MateriaPrima::doDeposito(deposito);
 
     if (Fabrica::sortearProbabilidade(probPerda)) {
-        fabrica.registar("perfuradora em " + Fabrica::nomePosicao(linha, coluna) + " perdeu " + extraida->obterNome());
+        fabrica.registar("perfuradora em " + Fabrica::nomePosicao(linha, coluna) + " perdeu " + extraida->obterSimbolo());
         delete extraida;
         return;
     }
 
     extraida->marcarChegada(fabrica.obterInstante());
     itemPorEntregar = extraida;
-    fabrica.registar("perfuradora em " + Fabrica::nomePosicao(linha, coluna) + " extraiu " + extraida->obterNome());
+    fabrica.registar("perfuradora em " + Fabrica::nomePosicao(linha, coluna) + " extraiu " + extraida->obterSimbolo());
 }
 
 bool Perfuradora::aceitarItem(Item*) {return false;}
