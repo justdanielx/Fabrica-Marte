@@ -118,6 +118,43 @@ int Fabrica::obterNumeroMaquinas() const {
 const std::vector<std::string>& Fabrica::obterResumo() const {return resumo;}
 const std::map<std::string, int>& Fabrica::obterEnviados() const {return enviados;}
 
+void Fabrica::comprar(char tipo, int linha, int coluna, char direcao) {
+    Posicao& posicao = posicaoEm(linha, coluna);
+
+    if (posicao.eCratera()) throw std::invalid_argument("Nao e possivel colocar maquinas em crateras!");
+    if (posicao.temMaquina()) throw std::invalid_argument("A posicao " + nomePosicao(linha, coluna) + " ja esta ocupada!");
+
+    Maquina* nova = Maquina::criar(tipo, direcao);
+
+    if (nova->obterCusto() > creditos) {
+        int custo = nova->obterCusto();
+        delete nova;
+        throw std::invalid_argument("Creditos insuficientes! Custa " + std::to_string(custo) + " e tem " + std::to_string(creditos) + "!");
+    }
+
+    creditos -= nova->obterCusto();
+    posicao.colocarMaquina(nova);
+}
+
+int Fabrica::vender(int linha, int coluna) {
+    Posicao& posicao = posicaoEm(linha, coluna);
+
+    if (!posicao.temMaquina()) throw std::invalid_argument("Nao existe nenhuma maquina em " + nomePosicao(linha, coluna) + "!");
+
+    int valor = posicao.obterMaquina()->obterCusto() * Settings::maquina_percentagem_venda / 100;
+    creditos += valor;
+    posicao.removerMaquina();
+
+    return valor;
+}
+
+void Fabrica::rodar(int linha, int coluna, char direcao) {
+    Posicao& posicao = posicaoEm(linha, coluna);
+
+    if (!posicao.temMaquina()) throw std::invalid_argument("Nao existe nenhuma maquina em " + nomePosicao(linha, coluna) + "!");
+    if (!posicao.obterMaquina()->rodar(direcao)) throw std::invalid_argument("Direcao invalida! Use c, b, e ou d!");
+}
+
 void Fabrica::avancarInstante() {
     instante++;
     resumo.clear();

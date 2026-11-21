@@ -11,6 +11,7 @@ class Maquina {
         Maquina(const Maquina& outra);
         virtual ~Maquina();
 
+        static Maquina* criar(char tipo, char direcao);
         static bool direcaoValida(char direcao);
 
         virtual void atuar(Fabrica& fabrica, int linha, int coluna) = 0;

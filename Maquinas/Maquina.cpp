@@ -2,6 +2,12 @@
 #include <sstream>
 
 #include "Maquinas/Maquina.h"
+#include "Maquinas/Perfuradora.h"
+#include "Maquinas/Transportador.h"
+#include "Maquinas/Refinaria.h"
+#include "Maquinas/Oficina.h"
+#include "Maquinas/Silo.h"
+#include "Maquinas/Lancador.h"
 #include "Settings.h"
 
 Maquina::Maquina(int custo, char direcao) : custo(custo), direcao(direcao), engenheiros(0) {
@@ -19,6 +25,17 @@ Maquina& Maquina::operator=(const Maquina& outra) {
     engenheiros = 0;
 
     return *this;
+}
+
+Maquina* Maquina::criar(char tipo, char direcao) {
+    if (tipo == 'p') return new Perfuradora(direcao);
+    if (tipo == 't') return new Transportador(direcao);
+    if (tipo == 'r') return new Refinaria(direcao);
+    if (tipo == 'o') return new Oficina(direcao);
+    if (tipo == 's') return new Silo(direcao);
+    if (tipo == 'l') return new Lancador(direcao);
+
+    throw std::invalid_argument("Tipo de maquina invalido! Use p, t, r, o, s ou l!");
 }
 
 bool Maquina::direcaoValida(char direcao) {

@@ -23,6 +23,10 @@ class Fabrica {
         const std::vector<std::string>& obterResumo() const;
         const std::map<std::string, int>& obterEnviados() const;
 
+        void comprar(char tipo, int linha, int coluna, char direcao);
+        int vender(int linha, int coluna);
+        void rodar(int linha, int coluna, char direcao);
+
         void avancarInstante();
         bool entregar(int linha, int coluna, char direcao, Item* item);
         char extrairMateriaPrima(int linha, int coluna);
