@@ -23,6 +23,7 @@ add_executable(Fabrica-Marte
         Itens/ProdutoRefinado.cpp
         Comandos/Comando.cpp
         Comandos/ComandoAjuda.cpp
+        Comandos/ComandoAvanca.cpp
         Comandos/ComandoCarrega.cpp
         Comandos/ComandoCompra.cpp
         Comandos/ComandoExecuta.cpp
