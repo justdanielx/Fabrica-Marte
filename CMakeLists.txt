@@ -36,6 +36,7 @@ add_executable(Fabrica-Marte
         Comandos/ComandoGrava.cpp
         Comandos/ComandoLposicao.cpp
         Comandos/ComandoMelhora.cpp
+        Comandos/ComandoRecupera.cpp
         Comandos/ComandoRoda.cpp
         Comandos/ComandoVende.cpp
 )

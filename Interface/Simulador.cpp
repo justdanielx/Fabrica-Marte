@@ -9,6 +9,7 @@
 #include "Comandos/ComandoFabrica.h"
 #include "Comandos/ComandoCarrega.h"
 #include "Comandos/ComandoFim.h"
+#include "Comandos/ComandoRecupera.h"
 #include "Comandos/ComandoGrava.h"
 #include "Comandos/ComandoDespede.h"
 #include "Comandos/ComandoAtribui.h"
@@ -39,6 +40,7 @@ Simulador::Simulador() : fabrica(nullptr), aTerminar(false), ficheirosAbertos(0)
     comandos.push_back(new ComandoAtribui());
     comandos.push_back(new ComandoDespede());
     comandos.push_back(new ComandoGrava());
+    comandos.push_back(new ComandoRecupera());
     comandos.push_back(new ComandoFim());
 }
 
