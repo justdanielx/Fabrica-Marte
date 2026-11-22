@@ -18,7 +18,5 @@ class Perfuradora : public Maquina {
         Maquina* duplicar() const override;
 
     private:
-        int probPerda;
-        int instantesDesdeExtracao;
         Item* itemPorEntregar;
 };

@@ -1,13 +1,11 @@
-#include <sstream>
-
 #include "Maquinas/Perfuradora.h"
 #include "Fabrica/Fabrica.h"
 #include "Itens/MateriaPrima.h"
 #include "Settings.h"
 
-Perfuradora::Perfuradora(char direcao) : Maquina(Settings::perfuradora_custo, direcao), probPerda(Settings::perfuradora_prob_perda), instantesDesdeExtracao(0), itemPorEntregar(nullptr) {}
+Perfuradora::Perfuradora(char direcao) : Maquina(Settings::perfuradora_custo, direcao), itemPorEntregar(nullptr) {}
 
-Perfuradora::Perfuradora(const Perfuradora& outra) : Maquina(outra), probPerda(outra.probPerda), instantesDesdeExtracao(outra.instantesDesdeExtracao), itemPorEntregar(nullptr) {
+Perfuradora::Perfuradora(const Perfuradora& outra) : Maquina(outra), itemPorEntregar(nullptr) {
     if (outra.itemPorEntregar != nullptr) itemPorEntregar = outra.itemPorEntregar->duplicar();
 }
 
@@ -21,24 +19,12 @@ void Perfuradora::atuar(Fabrica& fabrica, int linha, int coluna) {
         return;
     }
 
-    instantesDesdeExtracao++;
-    if (instantesDesdeExtracao < duracaoComEngenheiros(Settings::perfuradora_periodo)) return;
-    instantesDesdeExtracao = 0;
-
     char deposito = fabrica.extrairMateriaPrima(linha, coluna);
     if (deposito == ' ') return;
 
-    MateriaPrima* extraida = MateriaPrima::doDeposito(deposito);
-
-    if (Fabrica::sortearProbabilidade(probPerda)) {
-        fabrica.registar("perfuradora em " + Fabrica::nomePosicao(linha, coluna) + " perdeu " + extraida->obterSimbolo());
-        delete extraida;
-        return;
-    }
-
-    extraida->marcarChegada(fabrica.obterInstante());
-    itemPorEntregar = extraida;
-    fabrica.registar("perfuradora em " + Fabrica::nomePosicao(linha, coluna) + " extraiu " + extraida->obterSimbolo());
+    itemPorEntregar = MateriaPrima::doDeposito(deposito);
+    itemPorEntregar->marcarChegada(fabrica.obterInstante());
+    fabrica.registar("perfuradora em " + Fabrica::nomePosicao(linha, coluna) + " extraiu " + itemPorEntregar->obterSimbolo());
 }
 
 bool Perfuradora::aceitarItem(Item*) {return false;}
@@ -52,13 +38,6 @@ std::string Perfuradora::obterResumo() const {
     return "por entregar: " + itemPorEntregar->obterNome();
 }
 
-std::string Perfuradora::obterDescricao() const {
-    std::ostringstream oss;
-
-    oss << descricaoBase() << " | perda " << probPerda << "% | extrai a cada "
-        << duracaoComEngenheiros(Settings::perfuradora_periodo) << " instantes (passaram "
-        << instantesDesdeExtracao << ") | " << obterResumo();
-    return oss.str();
-}
+std::string Perfuradora::obterDescricao() const {return descricaoBase() + " | " + obterResumo();}
 
 Maquina* Perfuradora::duplicar() const {return new Perfuradora(*this);}
