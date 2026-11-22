@@ -22,23 +22,23 @@ add_executable(Fabrica-Marte
         Itens/MateriaPrima.cpp
         Itens/ProdutoRefinado.cpp
         Comandos/Comando.cpp
-        Comandos/ComandoAjuda.cpp
-        Comandos/ComandoAtribui.cpp
-        Comandos/ComandoAvanca.cpp
-        Comandos/ComandoCarrega.cpp
-        Comandos/ComandoCompra.cpp
-        Comandos/ComandoContrata.cpp
-        Comandos/ComandoDespede.cpp
-        Comandos/ComandoEstado.cpp
-        Comandos/ComandoExecuta.cpp
-        Comandos/ComandoFabrica.cpp
-        Comandos/ComandoFim.cpp
-        Comandos/ComandoGrava.cpp
-        Comandos/ComandoLposicao.cpp
-        Comandos/ComandoMelhora.cpp
-        Comandos/ComandoRecupera.cpp
-        Comandos/ComandoRoda.cpp
-        Comandos/ComandoVende.cpp
+        Comandos/Engenheiros/cmdAtribui.cpp
+        Comandos/Engenheiros/cmdContrata.cpp
+        Comandos/Engenheiros/cmdDespede.cpp
+        Comandos/Fabrica/cmdCarrega.cpp
+        Comandos/Fabrica/cmdFabrica.cpp
+        Comandos/Gerais/cmdAjuda.cpp
+        Comandos/Gerais/cmdExecuta.cpp
+        Comandos/Gerais/cmdFim.cpp
+        Comandos/Gerais/cmdGrava.cpp
+        Comandos/Gerais/cmdRecupera.cpp
+        Comandos/Listagem/cmdEstado.cpp
+        Comandos/Listagem/cmdLposicao.cpp
+        Comandos/Maquinas/cmdCompra.cpp
+        Comandos/Maquinas/cmdMelhora.cpp
+        Comandos/Maquinas/cmdRoda.cpp
+        Comandos/Maquinas/cmdVende.cpp
+        Comandos/Tempo/cmdAvanca.cpp
 )
 
 target_include_directories(Fabrica-Marte PRIVATE ${CMAKE_SOURCE_DIR})

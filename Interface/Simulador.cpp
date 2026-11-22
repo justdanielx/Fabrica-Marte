@@ -6,42 +6,42 @@
 
 #include "Interface/Simulador.h"
 #include "Interface/Ecra.h"
-#include "Comandos/ComandoFabrica.h"
-#include "Comandos/ComandoCarrega.h"
-#include "Comandos/ComandoAvanca.h"
-#include "Comandos/ComandoCompra.h"
-#include "Comandos/ComandoVende.h"
-#include "Comandos/ComandoRoda.h"
-#include "Comandos/ComandoMelhora.h"
-#include "Comandos/ComandoContrata.h"
-#include "Comandos/ComandoAtribui.h"
-#include "Comandos/ComandoDespede.h"
-#include "Comandos/ComandoEstado.h"
-#include "Comandos/ComandoLposicao.h"
-#include "Comandos/ComandoGrava.h"
-#include "Comandos/ComandoRecupera.h"
-#include "Comandos/ComandoExecuta.h"
-#include "Comandos/ComandoAjuda.h"
-#include "Comandos/ComandoFim.h"
+#include "Comandos/Fabrica/cmdFabrica.h"
+#include "Comandos/Fabrica/cmdCarrega.h"
+#include "Comandos/Tempo/cmdAvanca.h"
+#include "Comandos/Maquinas/cmdCompra.h"
+#include "Comandos/Maquinas/cmdVende.h"
+#include "Comandos/Maquinas/cmdRoda.h"
+#include "Comandos/Maquinas/cmdMelhora.h"
+#include "Comandos/Engenheiros/cmdContrata.h"
+#include "Comandos/Engenheiros/cmdAtribui.h"
+#include "Comandos/Engenheiros/cmdDespede.h"
+#include "Comandos/Listagem/cmdEstado.h"
+#include "Comandos/Listagem/cmdLposicao.h"
+#include "Comandos/Gerais/cmdGrava.h"
+#include "Comandos/Gerais/cmdRecupera.h"
+#include "Comandos/Gerais/cmdExecuta.h"
+#include "Comandos/Gerais/cmdAjuda.h"
+#include "Comandos/Gerais/cmdFim.h"
 
 Simulador::Simulador() : fabrica(nullptr), aTerminar(false), ficheirosAbertos(0) {
-    comandos.push_back(new ComandoFabrica());
-    comandos.push_back(new ComandoCarrega());
-    comandos.push_back(new ComandoAvanca());
-    comandos.push_back(new ComandoCompra());
-    comandos.push_back(new ComandoVende());
-    comandos.push_back(new ComandoRoda());
-    comandos.push_back(new ComandoMelhora());
-    comandos.push_back(new ComandoContrata());
-    comandos.push_back(new ComandoAtribui());
-    comandos.push_back(new ComandoDespede());
-    comandos.push_back(new ComandoEstado());
-    comandos.push_back(new ComandoLposicao());
-    comandos.push_back(new ComandoGrava());
-    comandos.push_back(new ComandoRecupera());
-    comandos.push_back(new ComandoExecuta());
-    comandos.push_back(new ComandoAjuda());
-    comandos.push_back(new ComandoFim());
+    comandos.push_back(new cmdFabrica());
+    comandos.push_back(new cmdCarrega());
+    comandos.push_back(new cmdAvanca());
+    comandos.push_back(new cmdCompra());
+    comandos.push_back(new cmdVende());
+    comandos.push_back(new cmdRoda());
+    comandos.push_back(new cmdMelhora());
+    comandos.push_back(new cmdContrata());
+    comandos.push_back(new cmdAtribui());
+    comandos.push_back(new cmdDespede());
+    comandos.push_back(new cmdEstado());
+    comandos.push_back(new cmdLposicao());
+    comandos.push_back(new cmdGrava());
+    comandos.push_back(new cmdRecupera());
+    comandos.push_back(new cmdExecuta());
+    comandos.push_back(new cmdAjuda());
+    comandos.push_back(new cmdFim());
 }
 
 Simulador::~Simulador() {
