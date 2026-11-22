@@ -4,6 +4,7 @@
 #include "Comandos/Listagem/cmdLposicao.h"
 #include "Interface/Simulador.h"
 #include "Maquinas/Maquina.h"
+#include "Settings.h"
 
 cmdLposicao::cmdLposicao() : Comando("lposicao", "lposicao <lc> [n]",
     "Mostra a informacao da posicao lc (linha e coluna em letras):\n"
@@ -20,6 +21,7 @@ bool cmdLposicao::executa(Simulador& simulador, std::istringstream& parametros) 
         throw std::invalid_argument(erroSintaxe());
 
     if (raio < 0) throw std::invalid_argument("O raio tem de ser maior ou igual a 0!");
+    if (raio > Settings::fabrica_max_linhas + Settings::fabrica_max_colunas) raio = Settings::fabrica_max_linhas + Settings::fabrica_max_colunas;
 
     const Fabrica& fabrica = simulador.obterFabrica();
     fabrica.obterPosicao(linha, coluna);
