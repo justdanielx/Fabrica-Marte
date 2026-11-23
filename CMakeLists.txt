@@ -43,3 +43,6 @@ add_executable(Fabrica-Marte
 
 target_include_directories(Fabrica-Marte PRIVATE ${CMAKE_SOURCE_DIR})
 target_compile_options(Fabrica-Marte PRIVATE -Wall -Wextra -pedantic)
+
+configure_file(${CMAKE_SOURCE_DIR}/mapa1.txt ${CMAKE_CURRENT_BINARY_DIR}/mapa1.txt COPYONLY)
+configure_file(${CMAKE_SOURCE_DIR}/teste1.txt ${CMAKE_CURRENT_BINARY_DIR}/teste1.txt COPYONLY)
