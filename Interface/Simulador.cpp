@@ -90,9 +90,9 @@ void Simulador::processar(const std::string& linha) {
 }
 
 void Simulador::executarFicheiro(const std::string& nomeFicheiro) {
-    const int MAX_FICHEIROS = 10;
+    const int maxFicheiros = 10;
 
-    if (ficheirosAbertos >= MAX_FICHEIROS) throw std::runtime_error("Demasiados ficheiros executados uns dentro dos outros!");
+    if (ficheirosAbertos >= maxFicheiros) throw std::runtime_error("Demasiados ficheiros executados uns dentro dos outros!");
 
     std::ifstream ficheiro(nomeFicheiro);
     std::string linha;
@@ -149,8 +149,8 @@ std::string Simulador::obterListaComandos() const {
 }
 
 std::string Simulador::obterDesenho() const {
-    const int LARGURA_PAINEL = 36;
-    const int MAX_RESUMO = Settings::ecra_max_linhas - 8;
+    const int larguraPainel = 36;
+    const int maxResumo = Settings::ecra_max_linhas - 8;
 
     int linhas = fabrica->obterLinhas();
     int colunas = fabrica->obterColunas();
@@ -158,13 +158,13 @@ std::string Simulador::obterDesenho() const {
 
     int linhasResumo = static_cast<int>(resumo.size());
     if (linhasResumo == 0) linhasResumo = 1;
-    if (linhasResumo > MAX_RESUMO) linhasResumo = MAX_RESUMO;
+    if (linhasResumo > maxResumo) linhasResumo = maxResumo;
 
     int alturaPainel = 7 + linhasResumo + 1;
     int altura = linhas + 3;
     if (alturaPainel > altura) altura = alturaPainel;
 
-    Ecra ecra(altura, colunas + 3 + 1 + LARGURA_PAINEL);
+    Ecra ecra(altura, colunas + 3 + 1 + larguraPainel);
     ecra.moldura(0, 0, linhas + 3, colunas + 3);
 
     for (int i = 0; i < linhas; i++)
@@ -179,7 +179,7 @@ std::string Simulador::obterDesenho() const {
     }
 
     int colunaPainel = colunas + 5;
-    ecra.moldura(0, colunas + 4, alturaPainel, LARGURA_PAINEL);
+    ecra.moldura(0, colunas + 4, alturaPainel, larguraPainel);
     ecra.escrever("Instante: " + std::to_string(fabrica->obterInstante()), 1, colunaPainel);
     ecra.escrever("Creditos: " + std::to_string(fabrica->obterCreditos()), 2, colunaPainel);
     ecra.escrever("Maquinas: " + std::to_string(fabrica->obterNumeroMaquinas()), 3, colunaPainel);
