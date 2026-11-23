@@ -16,7 +16,6 @@ bool Refinaria::aceitarItem(Item* novo) {
     if (item != nullptr || !novo->eMateriaPrima()) return false;
 
     item = novo;
-    instantesRestantes = duracaoComEngenheiros(Settings::refinaria_duracao);
     return true;
 }
 
