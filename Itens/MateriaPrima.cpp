@@ -12,11 +12,6 @@ MateriaPrima* MateriaPrima::doDeposito(char deposito) {
 
 bool MateriaPrima::eMateriaPrima() const {return true;}
 
-ProdutoRefinado* MateriaPrima::transformar() const {
-    if (obterSimbolo() == 'f') return new ProdutoRefinado("Placa de ferro", 'p', Settings::valor_placa_ferro);
-    if (obterSimbolo() == 's') return new ProdutoRefinado("Silicio puro", 'i', Settings::valor_silicio_puro);
-    if (obterSimbolo() == 'g') return new ProdutoRefinado("Agua", 'a', Settings::valor_agua);
-    return nullptr;
-}
+ProdutoRefinado* MateriaPrima::transformar() const {return nullptr;}
 
 Item* MateriaPrima::duplicar() const {return new MateriaPrima(*this);}
