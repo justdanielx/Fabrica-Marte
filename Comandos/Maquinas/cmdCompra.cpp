@@ -21,7 +21,7 @@ bool cmdCompra::executa(Simulador& simulador, std::istringstream& parametros) co
         !lerDirecao(parametros, direcao) || !semMaisParametros(parametros))
             throw std::invalid_argument(erroSintaxe());
 
-    if (tipo.size() != 1 || std::string("ptrosl").find(tipo[0]) == std::string::npos)
+    if (tipo != "p" && tipo != "t" && tipo != "r" && tipo != "o" && tipo != "s" && tipo != "l")
         throw std::invalid_argument("Tipo de maquina invalido! Use p, t, r, o, s ou l!");
 
     simulador.obterFabrica().comprar(tipo[0], linha, coluna, direcao);
