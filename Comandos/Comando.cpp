@@ -1,7 +1,6 @@
 #include "Comandos/Comando.h"
 
-Comando::Comando(const std::string& nome, const std::string& sintaxe, const std::string& descricao, const std::string& exemplo)
-    : nome(nome), sintaxe(sintaxe), descricao(descricao), exemplo(exemplo) {}
+Comando::Comando(const std::string& nome, const std::string& sintaxe, const std::string& descricao, const std::string& exemplo) : nome(nome), sintaxe(sintaxe), descricao(descricao), exemplo(exemplo) {}
 
 Comando::~Comando() {}
 
