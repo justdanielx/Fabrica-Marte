@@ -6,7 +6,8 @@
 cmdGrava::cmdGrava() : Comando("grava", "grava <nome>",
     "Guarda em memoria uma copia da fabrica e de tudo o que nela se encontra,\n"
     "associada ao nome indicado. Se ja existir uma copia com esse nome,\n"
-    "e substituida. As associacoes dos engenheiros nao ficam na copia.",
+    "e substituida. As associacoes dos engenheiros nao ficam na copia.\n"
+    "Falha se a fabrica ainda nao existir.",
     "grava antes") {}
 
 bool cmdGrava::executa(Simulador&, std::istringstream& parametros) const {

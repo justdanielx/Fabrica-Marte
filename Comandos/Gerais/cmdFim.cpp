@@ -5,7 +5,8 @@
 #include "Interface/Simulador.h"
 
 cmdFim::cmdFim() : Comando("fim", "fim",
-    "Termina o programa, libertando todos os recursos.",
+    "Termina o programa, libertando todos os recursos.\n"
+    "Nunca falha.",
     "fim") {}
 
 bool cmdFim::precisaDeFabrica() const {return false;}

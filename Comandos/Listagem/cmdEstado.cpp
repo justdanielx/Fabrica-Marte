@@ -8,7 +8,8 @@
 cmdEstado::cmdEstado() : Comando("estado", "estado",
     "Apresenta o instante atual, os creditos, as maquinas (tipo, posicao,\n"
     "direcao, engenheiros e resumo do conteudo), os engenheiros e o total\n"
-    "de itens enviados com sucesso para a Terra, de cada tipo.",
+    "de itens enviados com sucesso para a Terra, de cada tipo.\n"
+    "Falha se a fabrica ainda nao existir.",
     "estado") {}
 
 bool cmdEstado::executa(Simulador& simulador, std::istringstream& parametros) const {

@@ -5,7 +5,8 @@
 
 cmdAvanca::cmdAvanca() : Comando("avanca", "avanca [n]",
     "Avanca n instantes, um de cada vez (n inteiro positivo; 1 se nao for indicado).\n"
-    "Em cada instante as maquinas atuam e o ecra e apresentado no fim.",
+    "Em cada instante as maquinas atuam e o ecra e apresentado no fim.\n"
+    "Falha se a fabrica ainda nao existir ou se n nao for um inteiro positivo.",
     "avanca 10") {}
 
 bool cmdAvanca::executa(Simulador& simulador, std::istringstream& parametros) const {
